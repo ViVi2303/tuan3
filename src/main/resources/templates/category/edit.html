@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Category</title>
+  <th:block th:insert="layout.html :: link-css"></th:block>
+</head>
+<body>
+<th:block th:insert="layout.html :: header"></th:block>
+<div class="container">
+  <h1>Edit Category</h1>
+  <form th:action="@{/categories/edit/{id}(id=${category.id})}" th:object="${category}" method="post">
+    <div class="col-6 md-3">
+      <label for="name" class="form-label">Name: </label>
+      <input type="text" class="form-control" th:field="*{name}" id="name">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <br>
+  <a th:href="@{/categories}">Back to list</a>
+</div>
+<th:block th:insert="layout :: footer"></th:block>
+</body>
+</html>

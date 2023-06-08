@@ -18,12 +18,10 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/login")
-    public String login() {
-        return "user/login";
-    }
+    public String login() { return "user/login";}
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(Model model){
         model.addAttribute("user", new User());
         return "user/register";
     }
@@ -31,13 +29,11 @@ public class UserController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            bindingResult.getFieldErrors().forEach(error
-                    -> model.addAttribute(error.getField() + "error", error.getDefaultMessage()));
+            bindingResult.getFieldErrors().forEach(error -> model.addAttribute(error.getField() + "_error", error.getDefaultMessage()));
             return "user/register";
         }
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userService.save(user);
         return "redirect:/login";
-
     }
 }

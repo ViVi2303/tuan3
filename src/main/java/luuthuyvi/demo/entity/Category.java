@@ -1,7 +1,5 @@
 package luuthuyvi.demo.entity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;

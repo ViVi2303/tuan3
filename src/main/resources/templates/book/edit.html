@@ -9,9 +9,8 @@
 <body>
 <th:block th:insert="layout.html :: header"></th:block>
 <div class="container">
-
-  <h1>Edit Book</h1>
-  <form th:action="@{/books/edit}" th:object="${book}" method="post">
+  <h1>Add Book</h1>
+  <form th:action="@{/book/edit}" th:object="${book}" method="post">
     <input type="hidden" th:field="*{id}">
     <div class="col-6 md-3">
       <label for="title" class="form-label">Title: </label>
@@ -28,14 +27,14 @@
     <div class="col-6 md-3">
       <label for="category" class="form-label">Category: </label>
       <select id="category" class="form-control" name="category.id">
-        <option value="">Select Category</option>
+        <option th:value="*{category.id}" th:text="*{category.name}">Select Category</option>
         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
       </select>
     </div>
     <input type="submit" value="Save" class="btn btn-primary">
   </form>
   <br>
-  <a th:href="@{/books}">Back to list</a>
+  <a th:href="@{/book}">Back to list</a>
 </div>
 </div>
 <th:block th:insert="layout :: footer"></th:block>

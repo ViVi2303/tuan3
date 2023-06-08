@@ -12,21 +12,12 @@ import java.util.List;
 public class CategoryService {
     @Autowired
     private ICategoryRepository categoryRepository;
+    public List<Category>getAllCategories(){return categoryRepository.findAll();}
+    public Category getCategoryById(long id){return categoryRepository.findById(id).orElse(null);}
+    public Category saveCategory(Category category){return categoryRepository.save(category);}
+    public void deleteCategory(long id){categoryRepository.deleteById(id);}
 
-    public List<Category> getAllCategories(){
-        return categoryRepository.findAll();
-    }
-
-    public void addCategory(Category category){
+    public void updateCategory(Category category){
         categoryRepository.save(category);
-    };
-
-    public Category getCategoryById(long id){
-        return categoryRepository.findById(id).orElse(null);
     }
-
-    public void deleteCategory(long id){
-        categoryRepository.deleteById(id);
-    }
-
 }
